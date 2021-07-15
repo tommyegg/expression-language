@@ -127,27 +127,27 @@ class BinaryNode extends Node
             case '!==':
                 return $left !== $right;
             case '<':
-                return $left < $right;
+                return bccomp($left,$right) === -1;
             case '>':
-                return $left > $right;
+                return bccomp($left, $right) === 1;
             case '>=':
-                return $left >= $right;
+                return in_array(bccomp($left, $right), [1, 0]);
             case '<=':
-                return $left <= $right;
+                return in_array(bccomp($left, $right), [-1, 0]);
             case 'not in':
                 return !in_array($left, $right);
             case 'in':
                 return in_array($left, $right);
             case '+':
-                return $left + $right;
+                return bcadd($left, $right);
             case '-':
-                return $left - $right;
+                return bcsub($left, $right);
             case '~':
                 return $left.$right;
             case '*':
-                return $left * $right;
+                return bcmul($left, $right);
             case '/':
-                return $left / $right;
+                return bcdiv($left, $right);
             case '%':
                 return $left % $right;
             case 'matches':
